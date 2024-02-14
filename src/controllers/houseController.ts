@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import House from "../models/houseModel";
 import Room from "../models/roomModel";
-import ErrorHandler from "../utils/errorHandler";
+import ErrorHandler from "../utils/ErrorHandler";
 
 // create
 export const createHouse = async (

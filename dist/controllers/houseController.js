@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getHouses = exports.createHouse = void 0;
 const houseModel_1 = __importDefault(require("../models/houseModel"));
 const roomModel_1 = __importDefault(require("../models/roomModel"));
-const errorHandler_1 = __importDefault(require("../utils/errorHandler"));
+const ErrorHandler_1 = __importDefault(require("../utils/ErrorHandler"));
 // create
 const createHouse = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     // const house = new House(req.body);
@@ -46,7 +46,7 @@ const getHouses = (req, res, next) => __awaiter(void 0, void 0, void 0, function
     try {
         const house = yield houseModel_1.default.find().populate("rooms");
         if (!house) {
-            next(new errorHandler_1.default(404, "No data available"));
+            next(new ErrorHandler_1.default(404, "No data available"));
         }
         res
             .status(200)

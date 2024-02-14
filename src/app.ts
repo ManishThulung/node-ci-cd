@@ -1,5 +1,5 @@
 import express, { Request, Response, Application, NextFunction } from "express";
-import ErrorHandler from "./utils/errorHandler";
+import ErrorHandler from "./utils/ErrorHandler";
 import HouseRouter from "./routes/houseRoutes";
 
 const app: Application = express();
