@@ -54,6 +54,4 @@ app.use(
   }
 );
 
-app.listen(port, () => {
-  console.log(`Server is Fire at http://localhost:${port}`);
-});
+export default app;

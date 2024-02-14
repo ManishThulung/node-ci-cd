@@ -58,6 +58,4 @@ app.use((err, req, res, next) => {
         message: errorMessage,
     });
 });
-app.listen(port, () => {
-    console.log(`Server is Fire at http://localhost:${port}`);
-});
+exports.default = app;
