@@ -16,7 +16,11 @@ const myLogger = function (req: Request, res: Response, next: any) {
 app.use(myLogger);
 
 app.get("/", (req: Request, res: Response) => {
-  res.send("Welcome to Express & TypeScript Server");
+  res.status(200).json({
+    success: true,
+    message: "user deleted successfully",
+    data: "this is data",
+  });
 });
 
 app.get("/my-name", async (req: Request, res: Response, next: NextFunction) => {
