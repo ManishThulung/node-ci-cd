@@ -1,5 +1,6 @@
 import express, { Request, Response, Application, NextFunction } from "express";
-import ErrorHandler from "./utils/ErrorHandler";
+import ErrorHandler from "./utils/errorHandler";
+import router from "./routes/houseRoutes";
 
 const app: Application = express();
 
@@ -10,31 +11,7 @@ const myLogger = function (req: Request, res: Response, next: any) {
 };
 app.use(myLogger);
 
-app.get("/", (req: Request, res: Response) => {
-  res.status(200).json({
-    success: true,
-    message: "user deleted successfully",
-    data: "this is data",
-  });
-});
-
-app.get("/my-name", async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    const hi: boolean = true;
-    if (hi) {
-      return next(new ErrorHandler("My error message here", 404));
-    }
-    res.send("Welcome to Express & TypeScript Server");
-  } catch (error) {
-    next(error);
-  }
-});
-
-app.get("/:id", (req: Request, res: Response) => {
-  const id = req.params.id;
-  // Now 'id' contains the value of the 'id' parameter from the URL
-  res.send(`Received ID: ${id}`);
-});
+app.use("/api/house", router);
 
 // doesnt work here
 // app.use(myLogger);
