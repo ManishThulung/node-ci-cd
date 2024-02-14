@@ -1,4 +1,4 @@
-name: OTP-loging react js
+name: Node.js CI/CD
 
 # Push - action will trigger if someone pushes to the main branch
 # Pull request - action will trigger if someone opens a pull request from the main branch.
