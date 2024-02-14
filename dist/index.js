@@ -9,6 +9,12 @@ const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const port = process.env.PORT || 8000;
+const myLogger = function (req, res, next) {
+    console.log("LOGGED");
+    // res.send("I am middleware");
+    next();
+};
+app.use(myLogger);
 app.get("/", (req, res) => {
     res.send("Welcome to Express & TypeScript Server");
 });
@@ -17,6 +23,8 @@ app.get("/:id", (req, res) => {
     // Now 'id' contains the value of the 'id' parameter from the URL
     res.send(`Received ID: ${id}`);
 });
+// doesnt work here
+// app.use(myLogger);
 app.listen(port, () => {
     console.log(`Server is Fire at http://localhost:${port}`);
 });
