@@ -1,6 +1,6 @@
 import express, { Request, Response, Application, NextFunction } from "express";
 import ErrorHandler from "./utils/errorHandler";
-import router from "./routes/houseRoutes";
+import HouseRouter from "./routes/houseRoutes";
 
 const app: Application = express();
 
@@ -11,7 +11,7 @@ const myLogger = function (req: Request, res: Response, next: any) {
 };
 app.use(myLogger);
 
-app.use("/api/house", router);
+app.use("/api/house", HouseRouter);
 
 // doesnt work here
 // app.use(myLogger);
