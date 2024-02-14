@@ -1,12 +1,7 @@
 import express, { Request, Response, Application, NextFunction } from "express";
-import dotenv from "dotenv";
 import ErrorHandler from "./utils/ErrorHandler";
 
-//For env File
-dotenv.config();
-
 const app: Application = express();
-const port = process.env.PORT || 8000;
 
 const myLogger = function (req: Request, res: Response, next: any) {
   console.log("LOGGED");
