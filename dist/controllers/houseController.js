@@ -18,18 +18,19 @@ const roomModel_1 = __importDefault(require("../models/roomModel"));
 const ErrorHandler_1 = __importDefault(require("../utils/ErrorHandler"));
 // create
 const createHouse = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    // const house = new House(req.body);
-    // if (!house) {
-    //   return next(new ErrorHandler(404, "Cannot create a house"));
-    // }
+    const house = new houseModel_1.default(req.body);
+    console.log(req.body);
+    if (!req.body.street) {
+        return next(new ErrorHandler_1.default(404, "req.body is empty"));
+    }
     try {
         const room1 = yield roomModel_1.default.create({ floor: 1, number: 101 });
         const room2 = yield roomModel_1.default.create({ floor: 2, number: 201 });
         const house = yield houseModel_1.default.create({
-            street: "100 Maple Street",
-            city: "Fort Townville",
-            state: "New West Virgota",
-            zip: "77777",
+            street: req.body.street,
+            city: req.body.city,
+            state: req.body.state,
+            zip: req.body.zip,
             garden: { name: "Alex Merced" },
             rooms: [room1, room2],
         });

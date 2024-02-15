@@ -11,6 +11,12 @@ const myLogger = function (req: Request, res: Response, next: any) {
 };
 app.use(myLogger);
 
+//parse requests of content-type - application/json
+app.use(express.json());
+
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(express.urlencoded({ extended: true }));
+
 app.use("/api/house", HouseRouter);
 
 // doesnt work here

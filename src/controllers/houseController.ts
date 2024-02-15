@@ -9,21 +9,22 @@ export const createHouse = async (
   res: Response,
   next: NextFunction
 ) => {
-  // const house = new House(req.body);
+  const house = new House(req.body);
+  console.log(req.body);
 
-  // if (!house) {
-  //   return next(new ErrorHandler(404, "Cannot create a house"));
-  // }
+  if (!req.body.street) {
+    return next(new ErrorHandler(404, "req.body is empty"));
+  }
 
   try {
     const room1 = await Room.create({ floor: 1, number: 101 });
     const room2 = await Room.create({ floor: 2, number: 201 });
 
     const house = await House.create({
-      street: "100 Maple Street",
-      city: "Fort Townville",
-      state: "New West Virgota",
-      zip: "77777",
+      street: req.body.street,
+      city: req.body.city,
+      state: req.body.state,
+      zip: req.body.zip,
       garden: { name: "Alex Merced" },
       rooms: [room1, room2],
     });
