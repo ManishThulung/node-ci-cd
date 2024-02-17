@@ -1,11 +1,6 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
-const houseRoutes_1 = __importDefault(require("./routes/houseRoutes"));
-const app = (0, express_1.default)();
+import express from "express";
+import HouseRouter from "./routes/houseRoutes";
+const app = express();
 const myLogger = function (req, res, next) {
     console.log("LOGGED");
     // res.send("I am middleware");
@@ -13,10 +8,10 @@ const myLogger = function (req, res, next) {
 };
 app.use(myLogger);
 //parse requests of content-type - application/json
-app.use(express_1.default.json());
+app.use(express.json());
 // parse requests of content-type - application/x-www-form-urlencoded
-app.use(express_1.default.urlencoded({ extended: true }));
-app.use("/api/house", houseRoutes_1.default);
+app.use(express.urlencoded({ extended: true }));
+app.use("/api/house", HouseRouter);
 // doesnt work here
 // app.use(myLogger);
 // without this middleware if any error occurs, the app crashes
@@ -30,4 +25,4 @@ app.use((err, req, res, next) => {
         message: errorMessage,
     });
 });
-exports.default = app;
+export default app;
