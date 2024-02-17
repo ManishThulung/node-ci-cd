@@ -46,9 +46,11 @@ export const getHouses = async (
     if (!house) {
       next(new ErrorHandler(404, "No data available"));
     }
-    res
-      .status(200)
-      .json({ success: true, message: "data successful", data: house });
+    res.status(200).json({
+      success: true,
+      message: "data successfully coming",
+      data: house,
+    });
   } catch (error) {
     next(error);
   }
