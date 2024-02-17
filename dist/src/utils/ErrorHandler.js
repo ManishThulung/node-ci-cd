@@ -1,5 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 class ErrorHandler extends Error {
     constructor(status, message) {
         super(message);
@@ -7,4 +5,4 @@ class ErrorHandler extends Error {
         Error.captureStackTrace(this, this.constructor);
     }
 }
-exports.default = ErrorHandler;
+export default ErrorHandler;
