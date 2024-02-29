@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -7,20 +8,25 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import House from "../models/houseModel";
-import Room from "../models/roomModel";
-import ErrorHandler from "../utils/ErrorHandler";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.getHouses = exports.createHouse = void 0;
+const houseModel_1 = __importDefault(require("../models/houseModel"));
+const roomModel_1 = __importDefault(require("../models/roomModel"));
+const ErrorHandler_1 = __importDefault(require("../utils/ErrorHandler"));
 // create
-export const createHouse = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    const house = new House(req.body);
+const createHouse = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const house = new houseModel_1.default(req.body);
     console.log(req.body);
     if (!req.body.street) {
-        return next(new ErrorHandler(404, "req.body is empty"));
+        return next(new ErrorHandler_1.default(404, "req.body is empty"));
     }
     try {
-        const room1 = yield Room.create({ floor: 1, number: 101 });
-        const room2 = yield Room.create({ floor: 2, number: 201 });
-        const house = yield House.create({
+        const room1 = yield roomModel_1.default.create({ floor: 1, number: 101 });
+        const room2 = yield roomModel_1.default.create({ floor: 2, number: 201 });
+        const house = yield houseModel_1.default.create({
             street: req.body.street,
             city: req.body.city,
             state: req.body.state,
@@ -36,11 +42,12 @@ export const createHouse = (req, res, next) => __awaiter(void 0, void 0, void 0,
         next(error);
     }
 });
-export const getHouses = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+exports.createHouse = createHouse;
+const getHouses = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const house = yield House.find().populate("rooms");
+        const house = yield houseModel_1.default.find().populate("rooms");
         if (!house) {
-            next(new ErrorHandler(404, "No data available"));
+            next(new ErrorHandler_1.default(404, "No data available"));
         }
         res.status(200).json({
             success: true,
@@ -52,3 +59,5 @@ export const getHouses = (req, res, next) => __awaiter(void 0, void 0, void 0, f
         next(error);
     }
 });
+exports.getHouses = getHouses;
+//# sourceMappingURL=houseController.js.map

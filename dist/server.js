@@ -1,6 +1,11 @@
-import app from "./app";
-import dotenv from "dotenv";
-import { connectDatabase } from "./config/database";
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const app_1 = __importDefault(require("./app"));
+const dotenv_1 = __importDefault(require("dotenv"));
+const database_1 = require("./config/database");
 // Handling Uncaught Exception
 process.on("uncaughtException", (err) => {
     console.log(`Error: ${err.message}`);
@@ -9,11 +14,11 @@ process.on("uncaughtException", (err) => {
 });
 // Config
 if (process.env.NODE_ENV !== "PRODUCTION") {
-    dotenv.config();
+    dotenv_1.default.config();
 }
 // Connecting to database
-connectDatabase();
-const server = app.listen(process.env.PORT, () => {
+(0, database_1.connectDatabase)();
+const server = app_1.default.listen(process.env.PORT, () => {
     console.log(`Server is working on http://localhost:${process.env.PORT}`);
 });
 // Unhandled Promise Rejection
@@ -24,3 +29,4 @@ process.on("unhandledRejection", (error) => {
         process.exit(1);
     });
 });
+//# sourceMappingURL=server.js.map

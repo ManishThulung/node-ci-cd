@@ -1,0 +1,4 @@
+build image in dev mode -> docker build --target development -t my-app .
+
+COMPOSE
+it is a tool for defining and running multi-container docker app.

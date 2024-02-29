@@ -1,51 +1,51 @@
-// {
-//   "compilerOptions": {
-//     // Set the ECMAScript version to ES2020
-//     "target": "ES2020",
-
-//     // Use a custom module system called NodeNext
-//     "module": "es2015",
-
-//     // Use the nodenext module resolution strategy
-//     "moduleResolution": "Bundler",
-
-//     // Enable compatibility with modules that use `export =` syntax
-//     "esModuleInterop": true,
-
-//     // Allow importing JSON files as modules
-//     "resolveJsonModule": true,
-
-//     // Generate source maps for the compiled code
-//     "sourceMap": true,
-
-//     // Specify the directory where the compiled code will be outputted
-//     "outDir": "./dist",
-
-//     // Enable strict type checking rules
-//     "strict": true
-//   },
-
-//   // Specify the files that should be included and excluded in the compilation process
-//   "include": ["src/**/*.ts"],
-//   "exclude": ["node_modules", "dist"],
-
-//   "ts-node": {
-//     "esm": true,
-//     "compiler": "typescript"
-//   }
-// }
-
 {
   "compilerOptions": {
+    "experimentalDecorators": true,
+    "allowJs": true,
+    "sourceMap": true,
     "target": "es6",
-    "module": "es2015",
-    "rootDir": ".",
+    "module": "commonjs",
     "outDir": "./dist",
-    "esModuleInterop": true,
-    "moduleResolution": "Bundler",
+    "noImplicitAny": false,
     "resolveJsonModule": true,
-    "strict": true
-  },
-  "include": ["src/**/*.ts"],
-  "exclude": ["node_modules"]
+    "esModuleInterop": true
+  }
 }
+
+// {
+//   "compilerOptions": {
+//     "target": "es6",
+//     "module": "es2015",
+//     "rootDir": ".",
+//     "outDir": "./dist",
+//     "esModuleInterop": true,
+//     "moduleResolution": "Bundler",
+//     "resolveJsonModule": true,
+//     "strict": true
+//   },
+//   "include": ["src/**/*.ts"],
+//   "exclude": ["node_modules"]
+// }
+
+// change this to
+// {
+//   "compilerOptions": {
+//     "experimentalDecorators": true,
+//     "allowJs": true,
+//     "sourceMap": true,
+//     "target": "es6",
+//     "module": "esnext",
+//     "moduleResolution": "node",
+//     "outDir": "./dist",
+//     "noImplicitAny": false,
+//     "resolveJsonModule": true,
+//     "esModuleInterop": true
+//   },
+//   "type": "module"
+// }
+
+// Change from:
+// import { something } from './path/to/something';
+
+// To:
+// import { something } from './path/to/something.js';
